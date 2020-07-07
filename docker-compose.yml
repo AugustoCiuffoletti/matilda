@@ -2,22 +2,24 @@ version: '3'
 services:
   lida:
     image: mastrogeppetto/dockerlida:latest
-    ports: 
-      - "5000:5000"
     network_mode: "host"
+    restart: always
+    logging:
+      driver: "syslog"
   mongodb:
     image: mongo:bionic
-    ports:
-      - "27017-27019:27017-27019"
     volumes:
       - ./configdb:/data/configdb
       - ./db:/data/db
     network_mode: "host"
+    restart: always
+    logging:
+      driver: "syslog"
   nginx:
     image: nginx
-    ports: 
-      - "443:443"
     volumes:
       - ./nginx_conf:/etc/nginx/conf.d
+    restart: always
     network_mode: "host"
-
+    logging:
+      driver: "syslog"
