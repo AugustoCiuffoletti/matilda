@@ -2,6 +2,8 @@ version: '3'
 services:
   lida:
     image: mastrogeppetto/dockerlida:latest
+    volumes: 
+      - ./matilda_conf:/app/matilda_conf
     network_mode: "host"
     restart: always
     logging:
