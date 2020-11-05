@@ -7,7 +7,7 @@ services:
     network_mode: "host"
     restart: always
     logging:
-      driver: "syslog"
+      driver: "json-file"
   mongodb:
     image: mongo:bionic
     volumes:
@@ -16,7 +16,7 @@ services:
     network_mode: "host"
     restart: always
     logging:
-      driver: "syslog"
+      driver: "json-file"
   nginx:
     image: nginx
     volumes:
@@ -24,4 +24,4 @@ services:
     restart: always
     network_mode: "host"
     logging:
-      driver: "syslog"
+      driver: "json-file"
