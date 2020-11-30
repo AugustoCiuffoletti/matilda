@@ -16,6 +16,8 @@ Create a self-signed certificate to implement a basic security measure: for this
     
 which creates a self-signed certificate to encrypt client-server communication. This does not preclude a "men in the middle" attack, allowing an intruder to take the place of your server. However, this is a reasonable tradeoff between security and simplicity. The certificate must be renewed after one year with the same command.
 
+Go back to the root and descend the *lida2_conf*. Here you find a *conf.json* file that customizes the Matilda server operation. In a default installation you do not need to modify this file, but if you plan to use an external mongo server (e.g. Atlas MongoDB) you need to update the *legacy_configuration* fields.
+
 Go back to the root and run Matilda with a *docker-compose* command:
 
     $ cd ..
@@ -29,6 +31,8 @@ To manually stop the service use the command:
 
 If you manually stop the service, you need to restart it before shutting down the server in order to auto-start it at boot.
 
+The dockers are configured to automaticaly upgrade to the last released version of the dockers. If you want to disable such feature, remove from the *docker-compose.yml* file the *watchtower* stanza. 
+
 To have an instant check of system state use `docker-compose ps`:
 
     $ sudo docker-compose ps
@@ -40,19 +44,13 @@ To have an instant check of system state use `docker-compose ps`:
 
 For a more detailed view of the log use `docker-compose logs`.
 
-On the first run, the server creates an administration account for you: the username is root, the password is *admin*. You are prevented from removing the *root* account, but you can change the password. This is strongly encouraged if you are not planning to use this service as a sandbox.
+On the first run, the server creates an administration account for you: the username is "admin", the password is *admin*. You are prevented from removing the *root* account, but you can change the password. This is strongly encouraged if you are not planning to use this service as a sandbox.
 
-To access the service with your browser, use the URL `https://<address>` replacing *address* with the IP address or the hostname of the server (*localhost* included). You can use `http.//` as well, with reduced security.
+To access the service with your browser, use the URL `https://<address>` replacing *address* with the IP address or the hostname of the server. You can use `http.//` as well, with reduced security.
 
 ## Improving security
 
 Use a certificate provided by a Certification Authority (like [Letsencrypt](https://letsencrypt.org), which provides free certificates which must be renewed every 90 days) and copy it in the *nginx_conf* directory.
-
-## Backup, restore, share the database
-
-*DA TESTARE - TO BE TESTED*
-
-The two directories named *db* and *dbconfig* contain your database. To make a backup copy you can create a zip archive containing the two directories, using a timestamp in the filename. To restore the database, unzip the archive. In the same way the database can be shared with collaborators. **Always kill the service while performing such operations**.
 
 # OS specific suggestions
 
@@ -64,5 +62,5 @@ The server has been tested with ubuntu 18.04 (Bionic Beaver). We advice using th
     # sudo apt upgrade
     # sudo apt install git snapd
     # sudo snap install docker
-    
+
 The server needs 5GB on the hard disk, plus the space needed by the database. 
