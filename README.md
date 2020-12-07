@@ -139,7 +139,7 @@ To avoid running a useless MongoDB server on the server host, you should remove 
       logging:
         driver: "json-file"
 
-# Deploy on an OpenStack 
+### Deploy in an OpenStack infrastructure 
 
 OpenStack is a open cloud infrastructures: many universities and research institutes offer cloud resources using local or federated OpenStack deployments.
 
