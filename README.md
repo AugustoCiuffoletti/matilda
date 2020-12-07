@@ -71,7 +71,7 @@ The server has been tested with Ubuntu 18.04 (Bionic Beaver). We advice using th
     # sudo apt install git snapd
     # sudo snap install docker
 
-## APPENDIX
+# APPENDIX: alternate deployments
 
 The following deployment alternatives allow some degree of concurrent operation on the server and the database: this feature is currently under test.
 
