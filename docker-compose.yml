@@ -1,9 +1,23 @@
 version: '3'
 services:
+  watchtower:
+    image: containrrr/watchtower
+    volumes: 
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 600
   lida:
     image: mastrogeppetto/matilda_nodb:latest
     volumes: 
-      - ./matilda_conf:/app/matilda_conf
+      - ./lida2_conf:/app/lida2_conf
+    network_mode: "host"
+    restart: always
+    logging:
+      driver: "json-file"
+  mongodb:
+    image: mongo:bionic
+    volumes:
+      - ./configdb:/data/configdb
+      - ./db:/data/db
     network_mode: "host"
     restart: always
     logging:
