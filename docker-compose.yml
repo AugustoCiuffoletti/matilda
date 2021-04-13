@@ -1,18 +1,27 @@
 version: '3'
 services:
-  lida:
-    image: mastrogeppetto/matilda_nodb:latest
+  matilda:
+    image: davivcu/matilda:beta
     volumes: 
-      - ./matilda_conf:/app/matilda_conf
-    network_mode: "host"
+      - ./matilda_conf:/configuration
     restart: always
     logging:
       driver: "json-file"
+    networks:
+      - matilda_net
   nginx:
     image: nginx
     volumes:
-      - ./nginx_conf:/etc/nginx/conf.d
+      - ./nginx_conf/conf.d:/etc/nginx/conf.d
+      - ./nginx_conf/make-ssl-certs.sh:/docker-entrypoint.d/40-make-ssl-certs.sh
     restart: always
-    network_mode: "host"
+    networks:
+      - matilda_net
     logging:
       driver: "json-file"
+    ports:
+      - 80:80
+      - 443:443
+networks:
+  matilda_net:
+    driver: bridge
