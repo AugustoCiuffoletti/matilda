@@ -7,11 +7,11 @@
 	"database": {
 		"name": "matilda",
 		"legacy_configuration": {
-			"address": "localhost",
+			"address": "192.168.251.224",
 			"port": 27017,
-			"username": null,
-			"password": null
+			"username": "matilda",
+			"password": "HWc51JLx"
 		},
-		"optional_uri": "mongodb://mongo:27017/?retryWrites=true&w=majority"
+		"optional_uri": "mongodb://matilda:HWc51JLx@192.168.251.224:27017/?authSource=admin&retryWrites=true&w=majority"
 	}
 }

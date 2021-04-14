@@ -12,8 +12,7 @@ services:
   nginx:
     image: nginx
     volumes:
-      - ./nginx_conf/conf.d:/etc/nginx/conf.d
-      - ./nginx_conf/make-ssl-certs.sh:/docker-entrypoint.d/40-make-ssl-certs.sh
+      - ./nginx_conf:/etc/nginx/conf.d
     restart: always
     networks:
       - matilda_net
