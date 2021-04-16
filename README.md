@@ -1,4 +1,21 @@
-# How to run the Matilda server
+# Running Matilda with an external database
+
+This HOWTO refers to an installation of the Matilda service using a MongoDB service run by an independent host. We tested such configuration in a Openstack IaaS infrastructure, an we will make reference to this use case, but the same should be applicable also to other scenarios, like a Matilda service taht uses the Atlas MongodDB, or a shared server.
+
+## Configuring the infrastructure
+
+We used two c1.small instances: one for matilda with the nginx proxy, the other with the MongoDB server.
+
+The two hosts are connected by the OpenStack intranet. Only one floating IP is needed to have access to the matilda instance: its "security group" should grant access to port 22 (SSH), 80 (HTTP) and 443 (HTTPS). The "security group" of the MongoDB instance has the 27017-9 ports configured as ingress from the "security group of the matilda security group. Otionally, another floating IP can be associated to the MongoDB instance, and the corresponding port should be added to the "security group" as outbound.
+
+The matilda instance hosts two dockers: one for matilda, the other for nginx; the two images are the same of the all-in-one solution. Besides the Dockers, the matilda instance depends on two packages: the docker package from the snap repository, and the mongo-clients package from an apt repository. The former is needed to run the repositories, the second to interact with the database for administration.
+
+The mongodb instance hosts the mongodb server. The installation of the MongoDB service over an OpenStack instance is covered in a [gist] (https://gist.github.com/AugustoCiuffoletti/8218b9deb993834bc30bc048df1f4d62). 
+
+
+You should necessarily configure the user for matilda access, and an optional user to perform database dumps.
+
+
 
 This HOWTO refers to installing the Matilda inter-annotation service on a generic host, not dependent on the Operating System, provided it supports the *git* command and the Docker toolset. Both the *docker* and *docker-compose* commands must be available. See OS specific suggestions below.
 
