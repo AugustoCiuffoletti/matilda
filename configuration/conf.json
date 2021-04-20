@@ -1,0 +1,22 @@
+{
+    "app": {
+        "address": "localhost",
+        "port": 5000,
+        "annotation_models": [
+            "unipi_model.json",
+            "lida_model.json",
+            "unipi_model_v2.json"
+        ],
+        "docker": false
+    },
+    "database": {
+        "name": "lida",
+        "legacy_configuration": {
+            "address": "localhost",
+            "port": 27017,
+            "username": null,
+            "password": null
+        },
+        "optional_uri": null
+    }
+}
