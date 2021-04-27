@@ -6,9 +6,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     command: --interval 600
   lida:
-    image: mastrogeppetto/matilda_nodb:latest
+    image: davivcu/matilda:multimodel
     volumes: 
-      - ./lida2_conf:/app/lida2_conf
+      - ./configuration:/configuration
     network_mode: "host"
     restart: always
     logging:
